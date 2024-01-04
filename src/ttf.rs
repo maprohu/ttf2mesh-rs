@@ -115,7 +115,7 @@ impl TTFFile {
         let mut bytes = [0; 2];
         char.encode_utf16(&mut bytes);
 
-        let index = unsafe { sys::ttf_find_glyph(self.ttf, bytes[0]) };
+        let index = unsafe { sys::ttf_find_glyph(self.ttf, bytes[0].into()) };
 
         if index < 0 {
             return Err(Error::GlyphNotFound);
